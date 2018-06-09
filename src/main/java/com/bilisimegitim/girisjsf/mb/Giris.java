@@ -1,6 +1,7 @@
 
 package com.bilisimegitim.girisjsf.mb;
 
+import com.bilisimegitim.personelweb.dao.GirisDAO;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -32,6 +33,11 @@ public class Giris {
     }
     
     public String girisKontrol(){
-        return "menu.xhtml";
+        boolean sonuc = GirisDAO.giriseYetkiliMi(kullanici, sifre);
+        if (sonuc) {
+            return "menu.xhtml";    
+        } else {
+            return "giris.xhtml";
+        }
     }
 }
